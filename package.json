@@ -1,0 +1,52 @@
+{
+  "name": "pi-codex-reasoning-shortcuts",
+  "version": "0.1.0",
+  "description": "Codex-style Shift+Up and Shift+Down reasoning-effort shortcuts for Pi.",
+  "type": "module",
+  "license": "MIT",
+  "author": "derekszen",
+  "homepage": "https://github.com/derekszen/pi-codex-reasoning-shortcuts#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/derekszen/pi-codex-reasoning-shortcuts.git"
+  },
+  "bugs": {
+    "url": "https://github.com/derekszen/pi-codex-reasoning-shortcuts/issues"
+  },
+  "keywords": [
+    "pi-package",
+    "pi-coding-agent",
+    "codex",
+    "reasoning",
+    "thinking",
+    "keybindings"
+  ],
+  "engines": {
+    "node": ">=22.19.0"
+  },
+  "pi": {
+    "extensions": ["./index.ts"]
+  },
+  "files": ["index.ts", "README.md", "LICENSE", "CHANGELOG.md"],
+  "scripts": {
+    "test": "node --import tsx --test tests/*.test.ts",
+    "typecheck": "tsc --noEmit",
+    "check": "npm run typecheck && npm test",
+    "prepublishOnly": "npm run check"
+  },
+  "peerDependencies": {
+    "@earendil-works/pi-ai": "*",
+    "@earendil-works/pi-coding-agent": "*"
+  },
+  "devDependencies": {
+    "@earendil-works/pi-ai": "0.99.2",
+    "@earendil-works/pi-coding-agent": "0.99.2",
+    "@types/node": "^22.19.0",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  }
+}
