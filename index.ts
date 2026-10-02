@@ -1,8 +1,8 @@
-/** Codex-style bidirectional reasoning shortcuts, local to the active Pi session. */
+/** Shift+Up / Shift+Down reasoning shortcuts, local to the active Pi session. */
 import { getSupportedThinkingLevels } from "@earendil-works/pi-ai";
 import type { ExtensionAPI, ExtensionContext } from "@earendil-works/pi-coding-agent";
 
-export default function codexReasoningShortcuts(pi: ExtensionAPI): void {
+export default function reasoningShiftToggleShortcuts(pi: ExtensionAPI): void {
   function step(direction: -1 | 1, ctx: ExtensionContext): void {
     if (ctx.mode !== "tui" || !ctx.hasUI) return;
 

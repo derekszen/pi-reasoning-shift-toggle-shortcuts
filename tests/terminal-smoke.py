@@ -25,7 +25,7 @@ class PiTerminal:
         self.output = b""
         agent = root / "agent"
         agent.mkdir()
-        settings = {"defaultProvider": "ai-router", "defaultModel": "codex-main", "defaultThinkingLevel": "high", "packages": []}
+        settings = {"defaultProvider": "ai-router", "defaultModel": "codex-main", "defaultThinkingLevel": "high", "packages": [EXTENSION]}
         self.settings = agent / "settings.json"
         self.settings.write_text(json.dumps(settings))
         self.original_settings = self.settings.read_bytes()
@@ -58,7 +58,7 @@ class PiTerminal:
         env = {key: value for key, value in os.environ.items() if not key.startswith("PI_") and key != "HERDR_ENV"}
         env.update({"PI_CODING_AGENT_DIR": str(agent), "PI_OFFLINE": "1", "PI_TELEMETRY": "0", "TERM": "xterm-256color"})
         self.proc = subprocess.Popen([
-            PI, "--offline", "--no-extensions", "-e", EXTENSION, "--no-skills", "--no-prompt-templates",
+            PI, "--offline", "--no-skills", "--no-prompt-templates",
             "--no-themes", "--no-context-files", "--no-approve", "--no-tools", "--session", str(self.session),
         ], cwd=root, env=env, stdin=slave, stdout=slave, stderr=slave, start_new_session=True)
         os.close(slave)
@@ -66,6 +66,7 @@ class PiTerminal:
             self.wait_for(lambda: b"Fixture ready." in self.output, "Pi startup")
             self.pump(0.3)
             assert b"Failed to load extension" not in self.output, self.output.decode(errors="replace")
+            assert b"conflicts with" not in self.output, self.output.decode(errors="replace")
         except BaseException:
             self.close()
             raise
@@ -153,6 +154,7 @@ def main():
             terminal.wait_for(lambda: b"Reloaded keybindings" in terminal.output, "reload")
             terminal.press(UP, "minimal")
             assert b"Shortcut handler error" not in terminal.output
+            assert b"conflicts with" not in terminal.output
 
         case("directional keys, bounds, persistence, reload, unchanged defaults/model", directional)
         case("another arbitrary session: same shortcuts work without a session restriction", directional)
@@ -175,7 +177,7 @@ def main():
 
         case("non-reasoning model: warning without mutation", nonreasoning, reasoning=False)
 
-    print("Verified real Pi keyboard handling with isolated config/session files; no model requests made.")
+    print("Verified normal Pi package discovery and keyboard handling with isolated config/session files; no model requests made.")
 
 
 if __name__ == "__main__":

@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { test } from "node:test";
 import type { Model } from "@earendil-works/pi-ai";
 import type { ExtensionAPI, ExtensionContext } from "@earendil-works/pi-coding-agent";
-import codexReasoningShortcuts from "../index.ts";
+import reasoningShiftToggleShortcuts from "../index.ts";
 
 type Level = ReturnType<ExtensionAPI["getThinkingLevel"]>;
 type Shortcut = { description?: string; handler: (ctx: ExtensionContext) => void | Promise<void> };
@@ -40,7 +40,7 @@ function harness(initial: Level = "high", selectedModel: Model<"openai-responses
     model: selectedModel,
     ui: { notify: (text: string, type: string) => notifications.push({ text, type }) },
   } as unknown as ExtensionContext;
-  codexReasoningShortcuts(pi);
+  reasoningShiftToggleShortcuts(pi);
   return {
     ctx, changes, notifications, shortcuts,
     level: () => level,

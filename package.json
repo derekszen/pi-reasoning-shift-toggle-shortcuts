@@ -1,17 +1,17 @@
 {
-  "name": "pi-codex-reasoning-shortcuts",
-  "version": "0.1.0",
-  "description": "Codex-style Shift+Up and Shift+Down reasoning-effort shortcuts for Pi.",
+  "name": "pi-reasoning-shift-toggle-shortcuts",
+  "version": "0.2.0",
+  "description": "Shift+Up and Shift+Down reasoning-effort shortcuts for Pi, using native per-session state.",
   "type": "module",
   "license": "MIT",
   "author": "derekszen",
-  "homepage": "https://github.com/derekszen/pi-codex-reasoning-shortcuts#readme",
+  "homepage": "https://github.com/derekszen/pi-reasoning-shift-toggle-shortcuts#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/derekszen/pi-codex-reasoning-shortcuts.git"
+    "url": "git+https://github.com/derekszen/pi-reasoning-shift-toggle-shortcuts.git"
   },
   "bugs": {
-    "url": "https://github.com/derekszen/pi-codex-reasoning-shortcuts/issues"
+    "url": "https://github.com/derekszen/pi-reasoning-shift-toggle-shortcuts/issues"
   },
   "keywords": [
     "pi-package",
@@ -19,7 +19,9 @@
     "codex",
     "reasoning",
     "thinking",
-    "keybindings"
+    "keybindings",
+    "shift",
+    "shortcuts"
   ],
   "engines": {
     "node": ">=22.19.0"

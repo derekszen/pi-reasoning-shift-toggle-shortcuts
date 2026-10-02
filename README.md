@@ -1,6 +1,6 @@
-# pi-codex-reasoning-shortcuts
+# pi-reasoning-shift-toggle-shortcuts
 
-Codex-style **Shift+Up / Shift+Down** reasoning-effort controls for the [Pi coding agent](https://pi.dev).
+**Shift+Up / Shift+Down** reasoning-effort controls for the [Pi coding agent](https://pi.dev), using Pi's native per-session state.
 
 | Shortcut | Action |
 | --- | --- |
@@ -14,7 +14,7 @@ The shortcuts stop at the model's minimum/maximum instead of wrapping. Pi shows 
 Published as a GitHub Pi package:
 
 ```sh
-pi install git:github.com/derekszen/pi-codex-reasoning-shortcuts@v0.1.0
+pi install git:github.com/derekszen/pi-reasoning-shift-toggle-shortcuts@v0.2.0
 ```
 
 Run `/reload` in an existing Pi session after installing. Newly started interactive sessions load it automatically.
@@ -22,16 +22,18 @@ Run `/reload` in an existing Pi session after installing. Newly started interact
 Install just for a project with `--local`:
 
 ```sh
-pi install --local git:github.com/derekszen/pi-codex-reasoning-shortcuts@v0.1.0
+pi install --local git:github.com/derekszen/pi-reasoning-shift-toggle-shortcuts@v0.2.0
 ```
 
 Or try it in one invocation without saving a package declaration:
 
 ```sh
-pi -e git:github.com/derekszen/pi-codex-reasoning-shortcuts@v0.1.0
+pi -e git:github.com/derekszen/pi-reasoning-shift-toggle-shortcuts@v0.2.0
 ```
 
 Requires Pi's `getSupportedThinkingLevels()` extension API; tested with **Pi 0.99.2**.
+
+Run only one copy of these shortcuts. If replacing a standalone session-scoped extension, move that file out of Pi's extensions directory before reloading. If upgrading the old package name, remove its package declaration before installing this one. GitHub redirects old repository links, but keeping both sources configured can still load duplicate shortcuts.
 
 ## Models and scope
 
@@ -65,7 +67,7 @@ If you previously rebound `app.thinking.cycle` to one of these keys, remove that
 ## Remove
 
 ```sh
-pi remove git:github.com/derekszen/pi-codex-reasoning-shortcuts@v0.1.0
+pi remove git:github.com/derekszen/pi-reasoning-shift-toggle-shortcuts@v0.2.0
 ```
 
 Run `/reload` afterward. Removal does not reset the session's selected reasoning level.
@@ -77,7 +79,7 @@ bun install --ignore-scripts
 bun run check
 ```
 
-A real-terminal smoke test uses isolated config and scratch session files, disables network activity, and makes no model requests:
+A real-terminal smoke test loads the package through Pi's normal user-level discovery, uses isolated config and scratch session files, disables network activity, and makes no model requests:
 
 ```sh
 PI_BINARY=/path/to/pi uv run --no-project python tests/terminal-smoke.py

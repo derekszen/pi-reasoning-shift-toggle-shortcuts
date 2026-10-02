@@ -3,7 +3,7 @@
   "configVersion": 1,
   "workspaces": {
     "": {
-      "name": "pi-codex-reasoning-shortcuts",
+      "name": "pi-reasoning-shift-toggle-shortcuts",
       "devDependencies": {
         "@earendil-works/pi-ai": "0.99.2",
         "@earendil-works/pi-coding-agent": "0.99.2",
